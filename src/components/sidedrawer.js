@@ -31,7 +31,7 @@ const Sidedrawer = ({ isOpen, onClose }) => {
 					<Stack direction="column">
 						{favourites?.map((fav) => (
 							<Favourite
-								key={fav.id}
+								key={fav.id || fav.flight_number}
 								fav={fav}
 								favourites={favourites}
 								toggleFavourite={toggleFavourite}
