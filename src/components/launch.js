@@ -28,6 +28,7 @@ import { formatDateTime, formatLocalDateTime } from "../utils/format-date";
 import Error from "./error";
 import Breadcrumbs from "./breadcrumbs";
 import { FavouritesContext } from "../contexts/favourites";
+import styles from "./launch.module.css";
 
 export default function Launch() {
 	let { launchId } = useParams();
@@ -259,12 +260,12 @@ function Video({ launch }) {
 
 function Gallery({ images }) {
 	return (
-		<SimpleGrid my="6" minChildWidth="350px" spacing="4">
+		<div className={styles.gallery}>
 			{images.map((image) => (
 				<a href={image} key={image}>
 					<Image src={image.replace("_o.jpg", "_z.jpg")} />
 				</a>
 			))}
-		</SimpleGrid>
+		</div>
 	);
 }
