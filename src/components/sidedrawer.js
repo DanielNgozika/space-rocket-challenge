@@ -31,7 +31,7 @@ const Sidedrawer = ({ isOpen, onClose }) => {
 					<Stack direction="column">
 						{favourites?.map((fav) => (
 							<Favourite
-								key={fav.id}
+								key={fav.id || fav.flight_number}
 								fav={fav}
 								favourites={favourites}
 								toggleFavourite={toggleFavourite}
@@ -47,10 +47,6 @@ const Sidedrawer = ({ isOpen, onClose }) => {
 export default Sidedrawer;
 
 const Favourite = ({ fav, toggleFavourite }) => {
-	// const isFavourite = favourites.find(
-	// 	(fav) => fav.flight_number === fav.flight_number
-	// );
-
 	return (
 		<Box
 			as={Link}
