@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useParams, Link as RouterLink } from "react-router-dom";
 import { format as timeAgo } from "timeago.js";
-import { Watch, MapPin, Navigation, Layers } from "react-feather";
+import { Watch, MapPin, Navigation, Layers, Star } from "react-feather";
 import {
 	Flex,
 	Heading,
@@ -19,13 +19,15 @@ import {
 	Stack,
 	AspectRatioBox,
 	StatGroup,
-	Tooltip
+	Tooltip,
+	Button
 } from "@chakra-ui/core";
 
 import { useSpaceX } from "../utils/use-space-x";
 import { formatDateTime, formatLocalDateTime } from "../utils/format-date";
 import Error from "./error";
 import Breadcrumbs from "./breadcrumbs";
+import { FavouritesContext } from "../contexts/favourites";
 
 export default function Launch() {
 	let { launchId } = useParams();
@@ -64,6 +66,11 @@ export default function Launch() {
 }
 
 function Header({ launch }) {
+	const [favourites, toggleFavourite] = useContext(FavouritesContext);
+	const isFavourite = favourites.find(
+		(fav) => fav.flight_number === launch.flight_number
+	);
+
 	return (
 		<Flex
 			bgImage={`url(${launch.links.flickr_images[0]})`}
@@ -94,7 +101,23 @@ function Header({ launch }) {
 				py="2"
 				borderRadius="lg"
 			>
-				{launch.mission_name}
+				{launch.mission_name}{" "}
+				<Button
+					aria-label="Add to favorites button"
+					padding="0"
+					height="fit-content"
+					background="none"
+					_hover={{ background: "none" }}
+					onClick={(e) => {
+						toggleFavourite(launch);
+						e.preventDefault();
+					}}
+				>
+					<Star
+						fill={isFavourite ? "gold" : "none"}
+						color={isFavourite ? "gold" : "black"}
+					/>
+				</Button>
 			</Heading>
 			<Stack isInline spacing="3">
 				<Badge variantColor="purple" fontSize={["xs", "md"]}>
