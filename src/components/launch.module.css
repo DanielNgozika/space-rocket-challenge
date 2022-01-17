@@ -1,0 +1,29 @@
+.gallery {
+	column-count: 1;
+	margin-top: 40px;
+}
+
+.gallery > a {
+	display: block;
+	margin-bottom: 20px;
+}
+
+.gallery > a img {
+	width: 100%;
+	height: auto;
+}
+
+@media (min-width: 768px) {
+	.gallery {
+		column-count: 2;
+		column-gap: 30px;
+		column-width: calc(50% - 30px);
+	}
+}
+
+@media (min-width: 1025px) {
+	.gallery {
+		column-count: 3;
+		column-width: calc(33.33% - 30px);
+	}
+}
