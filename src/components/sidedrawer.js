@@ -47,10 +47,6 @@ const Sidedrawer = ({ isOpen, onClose }) => {
 export default Sidedrawer;
 
 const Favourite = ({ fav, toggleFavourite }) => {
-	// const isFavourite = favourites.find(
-	// 	(fav) => fav.flight_number === fav.flight_number
-	// );
-
 	return (
 		<Box
 			as={Link}
